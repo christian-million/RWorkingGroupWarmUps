@@ -1,0 +1,137 @@
+---
+title: "R Warm Ups"
+author: "Christian Million"
+date: '2022-08-18'
+output:
+    html_document:
+        code_folding: hide
+knit: (function(input, ...) {
+    rmarkdown::render(
+      input,
+      output_file = "docs/2022-08-18_warmups.html",
+      envir = globalenv()
+    )
+  })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+student_equity <- read.delim("data/student_equity.tsv")
+```
+
+# Warm Ups
+
+These R exercises were created as warm ups for the first R Working Group Meeting of CCC Institutional Researchers and highlight common tasks that IR folks may need to perform. There are many ways to approach each exercise, though solutions using both tidyverse functions and base R are provided in case folks need a hand.
+
+- If they are too easy, challenge yourself by performing all tasks using only base R.
+
+- If they are too hard, click on the hint and see if that helps.
+
+You can read the hints and solutions by clicking the `code` button on the right-hand side.
+
+## Exercise #1 - Reading in Data
+
+> Many data sets from the CCCCO come in as `.tsv` files
+>
+> Download the `student_equity.tsv` file from [this repository]() and save it to your local machine. Read the file into R and name the results `student_equity`.
+
+**Hint**
+
+```{r ex1_hint}
+# Assign the results of an R command using the `<-` symbol
+# student_equity <- your_solution("here.tsv")
+
+# Tidy Solution Help
+?readr::read_tsv
+
+# Base R Solution Help
+?read.delim
+```
+
+**Tidy Solution**
+
+```{r ex1_tidy_solution}
+# install.packages("readr")
+
+library(readr)
+
+student_equity <- readr::read_tsv("data/student_equity.tsv")
+```
+
+**Base R Solution**
+
+```{r ex1_base_solution}
+student_equity <- read.delim("data/student_equity.tsv")
+```
+
+
+## Exercise #2 - Counting Students
+
+> Common Question: How many students are in my program/major/school/cohort?
+>
+> Using the `student_equity` data from the previous exercise, find the number of female students in the data set.
+
+**Hint**
+
+```{r ex2_hint}
+# The relevant column name should be "Gender".
+
+# Tidy Solution
+# For tidyverse functions, you usually provide the data first and the refer to the columns without quotes: i.e, Gender
+?dplyr::count
+
+# Base R Solution Help
+# You can refer to column names in a data.frame using the `$` symbol, like: student_equity$Gender
+?table
+```
+
+**Tidy Solution**
+
+```{r ex2_tidy_solution}
+# install.packages("readr")
+library(dplyr)
+count(student_equity, Gender)
+```
+
+**Base R Solution**
+
+```{r ex2_base_solution}
+table(student_equity$Gender)["Female"]
+```
+
+## Exercise #3 - Replacing `NA` Values
+
+> Transforming Columns, especially handling missing data, is useful!
+>
+> The `Cohort_Math` column has a large number of missing values (`NA`). Replace missing values in the `Cohort_Math` columnn with the values in the `Cohort` column.
+
+**Hint**
+
+```{r ex3_hint}
+# General Help
+?is.na
+
+# Tidy Solution Help
+# mutate(data, column_name = ifelse(logic, T, F))
+?dplyr::mutate
+
+# Base R Solution Help
+# You can assign add/replace columns by assigning the results data$column <- data$new_column
+?is.na
+```
+
+**Tidy Solution**
+
+```{r ex3_tidy_solution}
+# install.packages("readr")
+library(dplyr)
+mutate(student_equity, Cohort_Math = ifelse(is.na(Cohort_Math), Cohort, Cohort_Math))
+```
+
+**Base R Solution**
+
+```{r ex3_base_solution}
+student_equity$Cohort_Math <- ifelse(is.na(student_equity$Cohort_Math),
+                                     student_equity$Cohort,
+                                     student_equity$Cohort_Math)
+```
