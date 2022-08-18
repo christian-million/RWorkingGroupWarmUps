@@ -33,7 +33,7 @@ You can read the hints and solutions by clicking the `code` button on the right-
 
 > Many data sets from the CCCCO come in as `.tsv` files
 >
-> Download the `student_equity.tsv` file from [this repository]() and save it to your local machine. Read the file into R and name the results `student_equity`.
+> Download the `student_equity.tsv` file from [this repository](https://github.com/christian-million/RWorkingGroupWarmUps/tree/main/data) and save it to your local machine. Read the file into R and name the results `student_equity`.
 
 **Hint**
 
