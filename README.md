@@ -1,10 +1,8 @@
 # R Working Group Warm Ups
 
-This directory contains the warm up exercises for an IR R Working Group
+This directory contains the warm up exercises for an IR R Working Group.
 
-# WarmUps
-
-- Meeting 1: [Link here eventually](docs/2022-08-18_warmups.html)
+View this page for all warmups: [https://christian-million.github.io/RWorkingGroupWarmUps/](https://christian-million.github.io/RWorkingGroupWarmUps/)
 
 # Data Sources
 
